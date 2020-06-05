@@ -1,4 +1,5 @@
 #include<iostream>
+#include<algorithm>
 #include <fstream>
 
 
@@ -10,9 +11,12 @@ std::ofstream out("data.out");
 // This would not be the case if created locally in Main.
 int globArr[10];
 int numOfLoops;
+int maximum = 0;
 
 void printArr(const int(&myArr) [10], int arrSize);
+void countOccurence();
 void sortArr(int(&myArr)[10], int arrSize);
+void countingSort();
 
 int main()
 {
@@ -29,30 +33,16 @@ int main()
 
 	/*for (int i = 0; i < numOfLoops; ++i)
 	{
-		int indexPos;
-		in >> indexPos;
-		++globArr[indexPos];
-	}
-
-	if (globArr[5] > 0)
-	{
-		out << "Yes, number in the array.\n";
-	}
-	else
-	{
-		out << "No, number is not in the array.\n";
-	}*/
-
-	for (int i = 0; i < numOfLoops; ++i)
-	{
 		int num;
 		in >> num;
 
 		globArr[i] = num;
-	}
+	}*/
 
-	//printArr(globArr, 10);
-	sortArr(globArr, 10);
+	printArr(globArr, 10);
+	//sortArr(globArr, 10);
+	countOccurence();
+	countingSort();
 	//printArr(globArr, 10);
 
 	return 0;
@@ -67,6 +57,18 @@ void printArr(const int(&myArr)[10], int arrSize)
 
 	std::cout << '\n';
 	std::cout << '\n';
+}
+
+void countOccurence()
+{
+	for (int i = 0; i < numOfLoops; ++i)
+	{
+		int indexPos;
+		in >> indexPos;
+		++globArr[indexPos];
+
+		maximum = std::max(maximum, indexPos);
+	}
 }
 
 void sortArr(int(&myArr)[10], int arrSize)
@@ -84,5 +86,21 @@ void sortArr(int(&myArr)[10], int arrSize)
 
 			printArr(myArr, 10);
 		}		
+	}
+}
+
+
+// THIS IS TOP CLASS UDEMY BULLSHIT!!!, FIX THIS.
+void countingSort()
+{
+	for (int i = 0; i < maximum; ++i)
+	{
+		if (globArr[i] > 0)
+		{
+			for (int j = 1; j <= globArr[i]; ++j)
+			{
+				std::cout << i << ", ";
+			}
+		}
 	}
 }
