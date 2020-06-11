@@ -9,13 +9,17 @@ std::ofstream out("data.out");
 
 // Because this is global it is initialized with all elements to 0
 // This would not be the case if created locally in Main.
-int globArr[10];
+
+// Globals.
+int globArr[101];
 int numOfLoops;
 int maximum = 0;
 
-void printArr(const int(&myArr) [10], int arrSize);
+
+// Declarations.
+void printArr(const int(&myArr) [101], int arrSize);
 void countOccurence();
-void sortArr(int(&myArr)[10], int arrSize);
+void sortArr(int(&myArr)[101], int arrSize);
 void countingSort();
 
 int main()
@@ -39,18 +43,20 @@ int main()
 		globArr[i] = num;
 	}*/
 
-	printArr(globArr, 10);
+	//printArr(globArr, 10);
 	//sortArr(globArr, 10);
 	countOccurence();
+	printArr(globArr, 10);
+	std::cout << '\n';
 	countingSort();
-	//printArr(globArr, 10);
+	std::cout << '\n';
 
 	return 0;
 }
 
-void printArr(const int(&myArr)[10], int arrSize)
+void printArr(const int(&myArr)[101], int arrSize)
 {
-	for (int i = 0; i < arrSize; ++i)
+	for (int i = 0; i <= arrSize; ++i)
 	{
 		std::cout << "[" << myArr[i] << "],\t";
 	}
@@ -71,7 +77,8 @@ void countOccurence()
 	}
 }
 
-void sortArr(int(&myArr)[10], int arrSize)
+// Bubble sort.
+void sortArr(int(&myArr)[101], int arrSize)
 {
 	for (int i = 0; i < arrSize; ++i)
 	{
@@ -90,10 +97,9 @@ void sortArr(int(&myArr)[10], int arrSize)
 }
 
 
-// THIS IS TOP CLASS UDEMY BULLSHIT!!!, FIX THIS.
 void countingSort()
 {
-	for (int i = 0; i < maximum; ++i)
+	for (int i = 0; i <= maximum; ++i)
 	{
 		if (globArr[i] > 0)
 		{
